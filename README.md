@@ -6,6 +6,10 @@ To begin with imageNet for image recognition : [image recognition](https://githu
 Then I realized the classification is not working in the project so, I started to working in detectNet for object detection
 [object detection](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-console-2.md)
 
+When I did Object Detection, I relized that didn't recognize the cigarettes in the photo, so I labeled the cigarettes from CVAT.
+/home/murat/Pictures/annotation_example.png
+It took me a long time to label the cigarettes because there were so many cigarette photos. I divided the phptps I tagged into 3 parts: test,validation,training
+
 ## Running This Project
 
 At first, I ran jetson-nano in headless mode then I used the [jetson-inference](https://github.com/dusty-nv/jetson-inference) project to find how can I do Image Classification. After that I used Dataset from Kaggle. The Dataset: https://www.kaggle.com/datasets/vitaminc/cigarette-smoker-detection?resource=download

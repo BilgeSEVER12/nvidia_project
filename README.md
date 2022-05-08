@@ -20,16 +20,24 @@ At first, I ran jetson-nano in headless mode then I used the [jetson-inference](
 
 Below are the steps I have followed to run this applicaiton: 
 * Run docker
+
 `./docker/run.sh`
 * Retrain the model
+
 `cd python/training/classification/`
+
 `python3 train.py --model-dir=models/smoke_nonsmoke data/smoke_nonsmoke`
 * Convert the model to the best model onnx
+
 `python3 onnx_export.py --model-dir=models/smoke_nonsmoke/`
 * I test the model on test images
+
 `NET=models/smoke_nonsmoke`
+
 `DATASET=data/smoke_nonsmoke`
+
 `mkdir $DATASET/test_output_smoke $DATASET/test_output_nonsmoke`
+
 `imagenet --model=$NET/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=$DATASET/../labels.txt \
            $DATASET/test/smoke $DATASET/test_output_smoke`
 
@@ -40,7 +48,7 @@ After I got unsatisfactory result with my classification project I decided to go
 * connect over USB (headless mode)
 * turn on fan
 
-sudo sh -c 'echo 128 > /sys/devices/pwm-fan/target_pwm'
+`sudo sh -c 'echo 128 > /sys/devices/pwm-fan/target_pwm'`
 
 * copy custom dataset in VOC format (root owns data directory! so sudo command worked!)
 
@@ -50,7 +58,7 @@ sudo sh -c 'echo 128 > /sys/devices/pwm-fan/target_pwm'
 
 `cd dssmoking` 
 
-`sudo scp murat@192.168.55.100:/home/murat/Downloads/dssmoking.zip .`
+`sudo scp hp@192.168.55.100:/home/hp/Downloads/dssmoking.zip .`
 
 `sudo unzip dssmoking.zip`
 
@@ -82,7 +90,27 @@ sudo sh -c 'echo 128 > /sys/devices/pwm-fan/target_pwm'
 
 * run inference. use labels.txt created under modelsmoking folder after training completes.  
 
-`NET=models/model1`
-`
-detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt --input-blob=input_0 --output-cvg=scores --output-bbox=boxes /dev/video0
-`
+`cd jetson-inference/python/training/detection/ssd`
+
+`NET=models/modelsmoking`
+
+`IMAGES=/home/nvidia/Pictures`
+
+`PYTORCH_MODEL=mb1-ssd-Epoch-0-Loss-7.829309706785241.pth`
+
+`PYTORCH_MODEL=mb1-ssd-Epoch-0-Loss-9.759434202442998.pth`
+
+* pytorch model test, under docker
+Usage: python run_ssd_example.py <net type>  <model path> <label path> <image path>
+
+           `python run_ssd_example.py mb1-ssd  $NET/$PYTORCH_MODEL $NET/labels.txt data/dssmoking/JPEGImages/smoking_0001.jpg`
+
+* onnx model on streaming video
+
+           `detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt --input-blob=input_0 --output-cvg=scores --output-bbox=boxes /dev/video0`
+
+* onnx model on images
+           `detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt --input-blob=input_0 --output-cvg=scores --output-bbox=boxes "$IMAGES/smoking_*.jpg" $IMAGES/test/smoking_%i.jpg`
+
+
+

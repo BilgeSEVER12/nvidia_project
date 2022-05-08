@@ -9,11 +9,11 @@ Later, I started to work with "detectNet" for object detection
 [object detection](https://github.com/dusty-nv/jetson-inference/blob/master/docs/detectnet-console-2.md) I used SSD algorithm which is supported by jetson-inference. 
 
 In order to use object detection I labeled more than 1000 images containing cigarettes with CVAT tool as proposed by Nvidia. By using CVAT tool: 
-1. I created a detection project (annotation project)
+1. I created a detection (annotation) [project](https://imgur.com/KlFXHcm)
 2. I divided the dataset into three parts: training, validation and test. 
 3. I created related annotation jobs. 
-/home/murat/Pictures/annotation_example.png
-It took me a long time to label the cigarettes because there were so many cigarette photos. 
+
+It took me a long time to label the cigarettes because there were so many cigarette photos. [Here](https://imgur.com/a/H6zCmYl) is only one example. 
 ## Running This Project
 ###  Image Classification
 At first, I ran jetson-nano in headless mode then I used the [jetson-inference](https://github.com/dusty-nv/jetson-inference) project to find how  I can do Image Classification. After that I used the [dataset from Kaggle](https://www.kaggle.com/datasets/vitaminc/cigarette-smoker-detection?resource=download)

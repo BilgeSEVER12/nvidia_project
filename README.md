@@ -44,7 +44,7 @@ Below are the steps I have followed to run this applicaiton:
 `imagenet --model=$NET/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=$DATASET/../labels.txt \
            $DATASET/test/nonsmoke $DATASET/test_output_nonsmoke`
 ### Image Detection 
-After I got unsatisfactory result with my classification project I decided to go with Below are the steps I have followed to run this applicaiton: 
+After I got unsatisfactory result with my classification project I decided to go with image deteciton. I used a different [dataset](https://data.mendeley.com/datasets/7b52hhzs3r/1) this time. Below are the steps I have followed to run this applicaiton: 
 * connect over USB (headless mode)
 * turn on fan
 

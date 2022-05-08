@@ -112,5 +112,14 @@ Usage: python run_ssd_example.py <net type>  <model path> <label path> <image pa
 * onnx model on images
            `detectnet --model=$NET/ssd-mobilenet.onnx --labels=$NET/labels.txt --input-blob=input_0 --output-cvg=scores --output-bbox=boxes "$IMAGES/smoking_*.jpg" $IMAGES/test/smoking_%i.jpg`
 
-
-
+## Results
+### Image Classification
+Below are test images I got from classification project
+* [image1](https://imgur.com/o30aPHT)
+* [image2](https://imgur.com/bA1Kf3H)
+* [image3](https://imgur.com/4vWJw5o)
+* [image4](https://imgur.com/DUgNK5L)
+* [image5](https://imgur.com/EIepNt8)
+* [image6](https://imgur.com/EAXxNmU)
+### Image Detection
+Unfortuntely detection training terminates unexpectedly, so model can not detect cigarettes. 
